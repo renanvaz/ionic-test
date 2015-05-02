@@ -1,0 +1,15 @@
+<div class="bar bar-header bar-stable">
+  <button class="button button-icon icon ion-ios-arrow-left" ng-click="$ionicGoBack()"></button>
+  <h1 class="title">Eventos</h1>
+</div>
+<ion-view>
+  <ion-content class="has-header">
+    <ion-list>
+      <ion-item ng-repeat="item in events" href="#/app/events/{{ item.id }}">
+        <h4>{{ item.title }}</h4>
+        <p>REALIZADO EM {{ item.date }}</p>
+        <p ng-show="item.local">{{ item.local }}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

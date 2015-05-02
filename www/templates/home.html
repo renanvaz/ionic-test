@@ -1,0 +1,23 @@
+<ion-view view-title="Home">
+  <ion-content class="padding">
+    <img src="img/logo.png" alt="Cronoserv" style="width: 300px; margin: 50px auto; display: block;" />
+
+    <a class="button button-block button-positive icon-left ion-search" href="#/app/events">
+      Consulte os resultados
+    </a>
+
+    <ion-list>
+      <div class="item item-divider icon-left ion-calendar">
+        Próximos eventos
+      </div>
+      <ion-item ng-repeat="item in nextEvents">
+        <h4>{{ item.title }}</h4>
+        <p>EM {{ item.date }}</p>
+        <p ng-show="item.local">{{ item.local }}</p>
+      </ion-item>
+      <!-- <a class="button button-block button-positive icon-left ion-calendar">
+        Veja todos os próximos eventos
+      </a> -->
+    </ion-list>
+  </ion-content>
+</ion-view>
