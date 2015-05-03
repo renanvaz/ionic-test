@@ -1,0 +1,11 @@
+CRONOSERV
+- Verificar se está online
+- Qual cor de tema utilizar?
+- Logo em alta
+- Ícone (1024x1024)
+- Splashscreen (2208x2208)
+- WS
+    - O que vai ter de informação no APP
+- iOS mobile Provision Dev e Prod(Tem que gerar pelo membercenter)
+    - 4b0517376bf82565ce617abff44d005ebfb4e79d
+- Keychain for Android build (isso eu consigo gerar por aqui)

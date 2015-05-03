@@ -43,8 +43,18 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
     }
   })
 
-  .state('app.events', {
-    url: '/events',
+  .state('app.dates', {
+    url: '/dates',
+    views: {
+      menuContent: {
+        controller: 'DatesCtrl',
+        templateUrl: 'templates/dates.html'
+      }
+    }
+  })
+
+  .state('app.events-year-month', {
+    url: '/events/:year/:month',
     views: {
       menuContent: {
         controller: 'EventsCtrl',
@@ -53,8 +63,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
     }
   })
 
-  .state('app.events-id', {
-    url: '/events/:id',
+  .state('app.event-id', {
+    url: '/event/:id',
     views: {
       menuContent: {
         controller: 'SearchCtrl',
