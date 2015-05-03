@@ -12,7 +12,8 @@ angular.module('starter.controllers', [])
   }*/
 })
 
-.controller('SearchCtrl', function($scope, $http, $cordovaProgress, $cordovaNetwork) {
+.controller('SearchCtrl', function($rootScope, $scope, $http, $cordovaProgress, $cordovaNetwork) {
+  $scope.title = $rootScope.eventTitle;
   $scope.events = [];
 
   for (var i = 0; i <= 400; i++) {
@@ -54,7 +55,9 @@ angular.module('starter.controllers', [])
     });
 })
 
-.controller('EventsCtrl', function($scope, $stateParams, $http, $cordovaProgress, $cordovaNetwork) {
+.controller('EventsCtrl', function($rootScope, $scope, $stateParams, $http, $cordovaProgress, $cordovaNetwork) {
+  $scope.year = $stateParams.year;
+  $scope.month = $stateParams.month;
   $scope.events = [];
 
   $http.get('https://ssl1.raweonline.com/cronoserv/app/eventos.asp?key=QVBQMjAxNUNST05PU0VSVg&year='+$stateParams.year+'&month='+$stateParams.month)
@@ -68,4 +71,8 @@ angular.module('starter.controllers', [])
       //alert('Ocorreu um erro ao carregar os próximos eventos.');
       $scope.events = [ { "id": "155009", "title": "6Âª CORRIDA DO TRABALHADOR GUARAREMA", "date": "1/5/2015", "local": "GUARAREMA / SP" }, { "id": "155008", "title": "7Âº DESAFIO DOS TRABALHADORES DE CORRIDA E CAMINHADA - 8Km", "date": "1/5/2015", "local": "OSASCO / SP" }, { "id": "155004", "title": "7Âº DESAFIO DOS TRABALHADORES DE CORRIDA E CAMINHADA - 4Km", "date": "1/5/2015", "local": "OSASCO / SP" }, { "id": "155001", "title": "3Âª PROVA PEDESTRE DO TRABALHADOR - SALTO PIRAPORA", "date": "1/5/2015", "local": "/ SP" }, { "id": "155001", "title": "3Âª PROVA PEDESTRE DO TRABALHADOR - SALTO PIRAPORA", "date": "1/5/2015", "local": "/ SP" } ];
     });
+
+  $scope.setEventTitle = function(item){
+    $rootScope.eventTitle = item.title;
+  };
 });
