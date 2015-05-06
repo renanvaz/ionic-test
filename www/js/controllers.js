@@ -19,6 +19,8 @@ angular.module('starter.controllers', [])
   $scope.searchName = '';
 
   $scope.onSubmit = function(number, name){
+    // $cordovaProgress.showSimple(true);
+
     $http.get('https://ssl1.raweonline.com/cronoserv/app/result.asp?key=QVBQMjAxNUNST05PU0VSVg&id='+$stateParams.id+'&number='+encodeURIComponent(number)+'&name='+encodeURIComponent(name))
       .success(function(data, status, headers, config) {
         // $cordovaProgress.hide();
