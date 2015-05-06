@@ -20,8 +20,9 @@
 
     <div class="card" ng-repeat="item in result">
       <div class="item">
-        <h2>#{{ item.general_classification.classification }} - {{ item.name }} ({{ item.number }})</h2>
-        <p>Sexo: {{ item.gender }}, idade: {{ item.age }}</p>
+        <h2>#{{ item.general_classification.classification }} - {{ item.name }}</h2>
+        <p>Número: {{ item.code }}, sexo: {{ item.gender }}, idade: {{ item.age }}</p>
+        <!-- <p>Equipe: {{ item.group }}, modalidade: {{ item.gender }}, categoria: {{ item.category }}</p> -->
       </div>
       <div class="item item-divider">
         Classificação geral
