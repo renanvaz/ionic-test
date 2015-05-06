@@ -14,21 +14,25 @@ angular.module('starter.controllers', [])
 
 .controller('SearchCtrl', function($rootScope, $scope, $stateParams, $http, $cordovaProgress, $cordovaNetwork) {
   $scope.title = $rootScope.eventTitle;
-  $scope.events = [];
-  $scope.number = '';
-  $scope.name = '';
+  $scope.result = [];
+  $scope.searchNumber = '';
+  $scope.searchName = '';
 
-  $scope.onSubmit = function(){
-    $http.get('https://ssl1.raweonline.com/cronoserv/app/result.asp?key=QVBQMjAxNUNST05PU0VSVg&id='+$stateParams.id+'&number='+encodeURIComponent($scope.number)+'&name='+encodeURIComponent($scope.name))
+  $scope.onSubmit = function(number, name){
+    $http.get('https://ssl1.raweonline.com/cronoserv/app/result.asp?key=QVBQMjAxNUNST05PU0VSVg&id='+$stateParams.id+'&number='+encodeURIComponent(number)+'&name='+encodeURIComponent(name))
       .success(function(data, status, headers, config) {
         // $cordovaProgress.hide();
-        $scope.nextEvents = data;
+        if (data.length) {
+          $scope.result = data;
+        } else {
+          alert('Nenhum resultado encontrado.');
+        }
       })
       .error(function(data, status, headers, config) {
         // $cordovaProgress.hide();
         alert('Ocorreu um erro ao carregar os próximos eventos.');
       });
-    }
+  };
 })
 
 .controller('HomeCtrl', function($scope, $http, $cordovaProgress, $cordovaNetwork) {

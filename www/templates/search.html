@@ -7,20 +7,63 @@
     <div class="list">
       <label class="item item-input item-stacked-label">
         <span class="input-label">Nº de Peito</span>
-        <input type="number" placeholder="123455" ng-model="number">
+        <input type="number" placeholder="123455" ng-model="searchNumber">
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Nome</span>
-        <input type="text" placeholder="Seu nome" ng-model="name">
+        <input type="text" placeholder="Seu nome" ng-model="searchName">
       </label>
       <div class="padding">
-        <button class="button button-block button-calm icon-left ion-search">Buscar</button>
+        <button class="button button-block button-calm icon-left ion-search" ng-click="onSubmit(searchNumber, searchName)">Buscar</button>
       </div>
     </div>
 
-    <ion-list>
+    <div class="card" ng-repeat="item in result">
+      <div class="item">
+        <h2>#{{ item.general_classification.classification }} - {{ item.name }} ({{ item.number }})</h2>
+        <p>Sexo: {{ item.gender }}, idade: {{ item.age }}</p>
+      </div>
+      <div class="item item-divider">
+        Classificação geral
+      </div>
+      <div class="item">
+        Classificação: {{ item.general_classification.classification }}
+      </div>
+      <div class="item">
+        Tempo liquido: {{ item.general_classification.liquid_time }}
+      </div>
+      <div class="item">
+        Tempo liquido: {{ item.general_classification.liquid_time }}
+      </div>
+      <div class="item item-divider">
+        Classificação por categoria
+      </div>
+      <div class="item">
+        Classificação: {{ item.category_classification.classification }}
+      </div>
+      <div class="item">
+        Tempo liquido: {{ item.category_classification.liquid_time }}
+      </div>
+      <div class="item">
+        Tempo liquido: {{ item.category_classification.liquid_time }}
+      </div>
+      <div class="item item-divider">
+        Classificação por sexo
+      </div>
+      <div class="item">
+        Classificação: {{ item.gender_classification.classification }}
+      </div>
+      <div class="item">
+        Tempo liquido: {{ item.gender_classification.liquid_time }}
+      </div>
+      <div class="item">
+        Tempo liquido: {{ item.gender_classification.liquid_time }}
+      </div>
+    </div>
+
+    <ion-list ng-show="events.length">
       <div class="item item-divider icon-left ion-flag">
-        Colocação Masculino / 4K BANCARIO
+        Colocação Geral
       </div>
       <ion-item ng-repeat="item in events">
         <h4>#0 - MARCO ANTONIO GATTINI (123456)</h4>
