@@ -4,7 +4,7 @@
 </div>
 <ion-view>
   <ion-content class="has-header">
-    <div class="list">
+    <form class="list" ng-submit="onSubmit(searchNumber, searchName)">
       <label class="item item-input item-stacked-label">
         <span class="input-label">Nº de Peito</span>
         <input type="number" placeholder="123455" ng-model="searchNumber">
@@ -14,9 +14,9 @@
         <input type="text" placeholder="Seu nome" ng-model="searchName">
       </label>
       <div class="padding">
-        <button class="button button-block button-calm icon-left ion-search" ng-click="onSubmit(searchNumber, searchName)">Buscar</button>
+        <button class="button button-block button-calm icon-left ion-search" type="submit">Buscar</button>
       </div>
-    </div>
+    </form>
 
     <div class="card" ng-repeat="item in result">
       <div class="item">
