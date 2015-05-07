@@ -1,15 +1,7 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $cordovaProgress, $cordovaNetwork) {
-  /*$cordovaProgress.showSimple(true);
 
-  setTimeout(function(){
-    $cordovaProgress.hide();
-  }, 3000);
-
-  if ($cordovaNetwork.isOffline()) {
-    alert('OFFLINE');
-  }*/
 })
 
 .controller('SearchCtrl', function($rootScope, $scope, $stateParams, $http, $cordovaProgress, $cordovaNetwork) {
@@ -19,52 +11,64 @@ angular.module('starter.controllers', [])
   $scope.searchName = '';
 
   $scope.onSubmit = function(number, name){
-    // $cordovaProgress.showSimple(true);
+    $cordovaProgress.showSimple(true);
 
-    $http.get('https://ssl1.raweonline.com/cronoserv/app/result.asp?key=QVBQMjAxNUNST05PU0VSVg&id='+$stateParams.id+'&number='+encodeURIComponent(number)+'&name='+encodeURIComponent(name))
-      .success(function(data, status, headers, config) {
-        // $cordovaProgress.hide();
-        if (data.length) {
-          $scope.result = data;
-        } else {
-          alert('Nenhum resultado encontrado.');
-        }
-      })
-      .error(function(data, status, headers, config) {
-        // $cordovaProgress.hide();
-        alert('Ocorreu um erro ao carregar os próximos eventos.');
-      });
+    if ($cordovaNetwork.isOnline()) {
+      $http.get('https://ssl1.raweonline.com/cronoserv/app/result.asp?key=QVBQMjAxNUNST05PU0VSVg&id='+$stateParams.id+'&number='+encodeURIComponent(number)+'&name='+encodeURIComponent(name))
+        .success(function(data, status, headers, config) {
+          $cordovaProgress.hide();
+          if (data.length) {
+            $scope.result = data;
+          } else {
+            alert('Nenhum resultado encontrado.');
+          }
+        })
+        .error(function(data, status, headers, config) {
+          $cordovaProgress.hide();
+          alert('Ocorreu um erro ao carregar os próximos eventos.');
+        });
+    } else {
+      alert('Verifique a conexão com a internet e tente novamente.');
+    }
   };
 })
 
 .controller('HomeCtrl', function($scope, $http, $cordovaProgress, $cordovaNetwork) {
   $scope.nextEvents = [];
-  // $cordovaProgress.showSimple(true);
+  $cordovaProgress.showSimple(true);
 
-  $http.get('https://ssl1.raweonline.com/cronoserv/app/eventos.asp?key=QVBQMjAxNUNST05PU0VSVg')
-    .success(function(data, status, headers, config) {
-      // $cordovaProgress.hide();
-      $scope.nextEvents = data;
-    })
-    .error(function(data, status, headers, config) {
-      // $cordovaProgress.hide();
-      alert('Ocorreu um erro ao carregar os próximos eventos.');
-    });
+  if ($cordovaNetwork.isOnline()) {
+    $http.get('https://ssl1.raweonline.com/cronoserv/app/eventos.asp?key=QVBQMjAxNUNST05PU0VSVg')
+      .success(function(data, status, headers, config) {
+        $cordovaProgress.hide();
+        $scope.nextEvents = data;
+      })
+      .error(function(data, status, headers, config) {
+        $cordovaProgress.hide();
+        alert('Ocorreu um erro ao carregar os próximos eventos.');
+      });
+  } else {
+    alert('Verifique a conexão com a internet e tente novamente.');
+  }
 })
 
 .controller('DatesCtrl', function($scope, $http, $cordovaProgress, $cordovaNetwork) {
   $scope.dates = [];
-  // $cordovaProgress.showSimple(true);
+  $cordovaProgress.showSimple(true);
 
-  $http.get('https://ssl1.raweonline.com/cronoserv/app/mothyear.asp?key=QVBQMjAxNUNST05PU0VSVg')
-    .success(function(data, status, headers, config) {
-      // $cordovaProgress.hide();
-      $scope.dates = data;
-    })
-    .error(function(data, status, headers, config) {
-      // $cordovaProgress.hide();
-      alert('Ocorreu um erro ao carregar os próximos eventos.');
-    });
+  if ($cordovaNetwork.isOnline()) {
+    $http.get('https://ssl1.raweonline.com/cronoserv/app/mothyear.asp?key=QVBQMjAxNUNST05PU0VSVg')
+      .success(function(data, status, headers, config) {
+        $cordovaProgress.hide();
+        $scope.dates = data;
+      })
+      .error(function(data, status, headers, config) {
+        $cordovaProgress.hide();
+        alert('Ocorreu um erro ao carregar os próximos eventos.');
+      });
+  } else {
+    alert('Verifique a conexão com a internet e tente novamente.');
+  }
 })
 
 .controller('EventsCtrl', function($rootScope, $scope, $stateParams, $http, $cordovaProgress, $cordovaNetwork) {
@@ -72,15 +76,19 @@ angular.module('starter.controllers', [])
   $scope.month = $stateParams.month;
   $scope.events = [];
 
-  $http.get('https://ssl1.raweonline.com/cronoserv/app/eventos.asp?key=QVBQMjAxNUNST05PU0VSVg&year='+$stateParams.year+'&month='+$stateParams.month)
-    .success(function(data, status, headers, config) {
-      // $cordovaProgress.hide();
-      $scope.events = data;
-    })
-    .error(function(data, status, headers, config) {
-      // $cordovaProgress.hide();
-      alert('Ocorreu um erro ao carregar os próximos eventos.');
-    });
+  if ($cordovaNetwork.isOnline()) {
+    $http.get('https://ssl1.raweonline.com/cronoserv/app/eventos.asp?key=QVBQMjAxNUNST05PU0VSVg&year='+$stateParams.year+'&month='+$stateParams.month)
+      .success(function(data, status, headers, config) {
+        $cordovaProgress.hide();
+        $scope.events = data;
+      })
+      .error(function(data, status, headers, config) {
+        $cordovaProgress.hide();
+        alert('Ocorreu um erro ao carregar os próximos eventos.');
+      });
+  } else {
+    alert('Verifique a conexão com a internet e tente novamente.');
+  }
 
   $scope.setEventTitle = function(item){
     $rootScope.eventTitle = item.title;
