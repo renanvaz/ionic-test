@@ -15,11 +15,11 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
-  <gap:plugin name="com.ionic.keyboard"/>
+  <!-- <gap:plugin name="com.ionic.keyboard"/>
   <gap:plugin name="org.apache.cordova.console"/>
   <gap:plugin name="org.apache.cordova.device"/>
   <gap:plugin name="org.apache.cordova.network-information"/>
-  <gap:plugin name="org.pbernasconi.progressindicator"/>
+  <gap:plugin name="org.pbernasconi.progressindicator"/> -->
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
